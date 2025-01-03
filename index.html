@@ -3,162 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juega con Chaguagua</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Espacio de Juegos Infantiles</title>
     <style>
-        /* Fondo gradiente colorido */
+        /* Estilo inicial del cuerpo con gradiente animado */
         body {
-            background: linear-gradient(to bottom right, #a8d0e6, #f76c6c);
-            font-family: Arial, sans-serif;
-            color: #333;
             margin: 0;
-            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            color: #fff;
+            overflow: hidden;
+            background: linear-gradient(to bottom right, #ff9aa2, #ffdac1);
+            animation: backgroundAnimation 8s infinite alternate;
+            perspective: 1000px;
         }
 
-        /* Contenedor principal */
-        .container {
-            text-align: center;
-            margin: 0 auto;
-            padding: 40px;
-            max-width: 800px;
-            background-color: #ffffffd9;
-            border-radius: 10px;
-            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+        @keyframes backgroundAnimation {
+            0% { background: linear-gradient(135deg, #ff7eb3, #ff758f); }
+            25% { background: linear-gradient(135deg, #77a1d3, #79cbca); }
+            50% { background: linear-gradient(135deg, #ffb347, #ffcc33); }
+            75% { background: linear-gradient(135deg, #ee9ca7, #ffdde1); }
+            100% { background: linear-gradient(135deg, #a18cd1, #fbc2eb); }
         }
 
-        /* Estilo de encabezado */
-        h1 {
-            font-size: 2.5em;
-            color: #333;
-            margin-bottom: 20px;
-        }
-
-        /* Estilo de subtítulo */
-        h2 {
-            font-size: 1.5em;
-            color: #555;
-            margin-top: 10px;
-        }
-
-        /* Estilo de pregunta */
-        .explore-question {
-            font-size: 1.2em;
-            color: #444;
-            margin-bottom: 15px;
-        }
-
-        /* Estilo de la imagen de Chaguagua */
-        .chaguagua-container img {
+        .chaguagua {
             width: 300px;
             height: auto;
+            border: 5px solid #ff6f61;
             border-radius: 50%;
-            box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.4);
-            border: 5px solid #f76c6c;
-        }
-
-        /* Estilo del contenedor de entrada */
-        .input-container {
+            box-shadow: 0px 0px 25px rgba(255, 111, 97, 0.8), 0 10px 15px rgba(0, 0, 0, 0.3);
+            animation: float 3s infinite ease-in-out;
             margin: 20px 0;
+            transform: rotateY(10deg);
         }
 
-        .input-container label {
-            font-size: 1.2em;
-            color: #333;
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotateY(10deg); }
+            50% { transform: translateY(-20px) rotateY(-10deg); }
         }
 
-        .input-container input {
-            padding: 10px;
-            font-size: 1em;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-            margin-top: 10px;
+        h1 {
+            font-size: 4em;
+            margin: 10px 0;
+            color: #ff6f61;
+            text-align: center;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
         }
 
-        .input-container button {
-            padding: 10px 20px;
-            font-size: 1em;
+        .fun-text {
+            font-size: 1.5em;
+            color: #ffcc80;
+            animation: textColorChange 2s infinite alternate;
+            margin: 10px 0;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes textColorChange {
+            0% { color: #ffcc80; }
+            50% { color: #f4b942; }
+            100% { color: #ff6f61; }
+        }
+
+        .game-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #ff7eb3, #ff758f);
+            color: white;
+            text-decoration: none;
+            font-size: 1.5em;
             border-radius: 10px;
-            border: none;
-            background-color: #4CAF50;
-            color: white;
-            cursor: pointer;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
         }
 
-        /* Botones de exploración */
-        .explore-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin: 20px 0;
-        }
-
-        .explore-buttons button {
-            padding: 12px 24px;
-            font-size: 1em;
-            border-radius: 12px;
-            border: none;
-            background-color: #f76c6c;
-            color: white;
-            cursor: pointer;
+        .game-link:hover {
+            transform: translateY(-5px) scale(1.1);
+            background: linear-gradient(135deg, #ff9aa2, #f6a5c0);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.4);
         }
     </style>
 </head>
 <body>
-    <div class="container" id="homeSection">
-        <h1>Juega con Chaguagua</h1>
-        <h2>Chaguagua quiere saber, ¿Cómo te llamas?</h2>
-        <div class="chaguagua-container">
-            <img src="chaguagua.png" alt="Imagen de Chaguagua">
-        </div>
-        
-        <!-- Contenedor de entrada de nombre -->
-        <div class="input-container">
-            <label for="nameInput">¿Cómo te llamas?</label>
-            <input type="text" id="nameInput" placeholder="Escribe tu nombre aquí">
-            <button onclick="submitName()">Enviar</button>
-        </div>
-        
-        <!-- Mensaje de bienvenida y botones de exploración -->
-        <div id="welcomeMessage"></div>
-        <div id="explorePrompt" style="display: none;">
-            <p class="explore-question">¿Qué quieres explorar hoy?</p>
-            <div class="explore-buttons">
-                <button onclick="window.location.href='https://rosy138.github.io/ChaguaguaJuegos/'">Juegos</button>
-                <button onclick="window.location.href='https://rosy138.github.io/AdivinanzasChaguagua/'">Adivinanzas</button>
-                <button onclick="showSection()">Videos On-Demand</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Popup para Videos On-Demand -->
-    <div class="popup" id="videoPopup">
-        <div class="popup-content">
-            <h3>Videos On-Demand</h3>
-            <p>Disfruta de tus videos favoritos cuando quieras.</p>
-            <iframe width="320" height="240" src="https://www.youtube.com/embed/POeIVIRMMF8" frameborder="0" allowfullscreen></iframe>
-            <iframe width="320" height="240" src="https://www.youtube.com/embed/4uYjZ63etRY" frameborder="0" allowfullscreen></iframe>
-            <button onclick="goHome()">Regresar al Inicio</button>
-        </div>
-    </div>
+    <h1>¡Bienvenido a Chaguagua Land!</h1>
+    <img src="chaguagua.png" alt="Chaguagua" class="chaguagua">
+    <p class="fun-text">¡Diviértete jugando y aprendiendo!</p>
+    <a href="https://rosy138.github.io/IngresoJuegos/" class="game-link">¡Ingresar a los juegos!</a>
+    
+    <button onclick="toggleBackground()" style="margin-top: 20px; padding: 10px 20px; font-size: 1.2em; cursor: pointer;">Cambiar Fondo</button>
 
     <script>
-        // Mostrar mensaje de bienvenida
-        function submitName() {
-            const name = document.getElementById('nameInput').value;
-            if (name) {
-                document.getElementById('welcomeMessage').innerHTML = `<h2>¡Bienvenido, ${name}!</h2>`;
-                document.getElementById('explorePrompt').style.display = 'block';
-            }
-        }
+        let isAnimated = true;
 
-        // Mostrar popup de videos
-        function showSection() {
-            document.getElementById('videoPopup').style.display = 'flex';
-        }
-
-        // Regresar al inicio
-        function goHome() {
-            document.getElementById('videoPopup').style.display = 'none';
+        function toggleBackground() {
+            document.body.style.animation = isAnimated ? 'none' : 'backgroundAnimation 8s infinite alternate';
+            document.body.style.background = isAnimated 
+                ? "url('background11.png') no-repeat center center / contain" 
+                : '';
+            document.body.style.backgroundSize = isAnimated ? '80%' : 'cover'; 
+            document.body.style.backgroundPosition = 'center'; 
+            isAnimated = !isAnimated;
         }
     </script>
 </body>
