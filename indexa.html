@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espacio de Juegos Infantiles</title>
+    <style>
+        /* Estilo inicial del cuerpo con gradiente animado */
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            color: #fff;
+            overflow: hidden;
+            background: linear-gradient(to bottom right, #ff9aa2, #ffdac1);
+            animation: backgroundAnimation 8s infinite alternate;
+            perspective: 1000px;
+            transition: background 1s ease-in-out;
+        }
+
+        @keyframes backgroundAnimation {
+            0% { background: linear-gradient(135deg, #ff7eb3, #ff758f); }
+            25% { background: linear-gradient(135deg, #77a1d3, #79cbca); }
+            50% { background: linear-gradient(135deg, #ffb347, #ffcc33); }
+            75% { background: linear-gradient(135deg, #ee9ca7, #ffdde1); }
+            100% { background: linear-gradient(135deg, #a18cd1, #fbc2eb); }
+        }
+
+        .chaguagua {
+            width: 300px;
+            height: auto;
+            border: 5px solid #ff6f61;
+            border-radius: 50%;
+            box-shadow: 0px 0px 25px rgba(255, 111, 97, 0.8), 0 10px 15px rgba(0, 0, 0, 0.3);
+            animation: float 3s infinite ease-in-out;
+            margin: 20px 0;
+            transform: rotateY(10deg);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotateY(10deg); }
+            50% { transform: translateY(-20px) rotateY(-10deg); }
+        }
+
+        h1 {
+            font-size: 4em;
+            margin: 10px 0;
+            color: #ff6f61;
+            text-align: center;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            animation: textGlow 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes textGlow {
+            0% { text-shadow: 2px 2px 8px #ff6f61, 0 0 25px #ff9aa2; }
+            100% { text-shadow: 2px 2px 8px #ffcc80, 0 0 25px #ff9aa2; }
+        }
+
+        .fun-text {
+            font-size: 1.5em;
+            color: #ffcc80;
+            animation: textColorChange 2s infinite alternate;
+            margin: 10px 0;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes textColorChange {
+            0% { color: #ffcc80; }
+            50% { color: #f4b942; }
+            100% { color: #ff6f61; }
+        }
+
+        .game-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #ff7eb3, #ff758f);
+            color: white;
+            text-decoration: none;
+            font-size: 1.5em;
+            border-radius: 10px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .game-link:hover {
+            transform: translateY(-5px) scale(1.1);
+            background: linear-gradient(135deg, #ff9aa2, #f6a5c0);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            cursor: pointer;
+            background: #ff7eb3;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ff758f;
+        }
+
+        /* Fondo flotante con animación */
+        .background-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: -1;
+            animation: backgroundFloat 10s infinite;
+        }
+
+        @keyframes backgroundFloat {
+            0% { opacity: 0; transform: scale(1.2); }
+            25% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0; transform: scale(1.2); }
+            75% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(1.2); }
+        }
+
+        .background-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: backgroundFloat 15s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <h1>¡Bienvenido a Chaguagua Land!</h1>
+    <img src="chaguagua.png" alt="Chaguagua" class="chaguagua">
+    <p class="fun-text">¡Diviértete jugando y aprendiendo!</p>
+    <a href="https://rosy138.github.io/IngresoJuegos/" class="game-link">¡Ingresar a los juegos!</a>
+    
+    <button onclick="toggleBackground()">Cambiar Fondo</button>
+
+    <div class="background-container">
+        <img src="background12.png" alt="Fondo 12">
+        <img src="background13.png" alt="Fondo 13">
+        <img src="background14.png" alt="Fondo 14">
+        <img src="background15.png" alt="Fondo 15">
+    </div>
+
+    <!-- Audio de fondo -->
+    <audio id="backgroundMusic" loop autoplay>
+        <source src="music.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+
+    <script>
+        let isAnimated = true;
+
+        function toggleBackground() {
+            let backgrounds = [
+                'background12.png', 'background13.png', 'background14.png', 'background15.png'
+            ];
+            let randomIndex = Math.floor(Math.random() * backgrounds.length);
+            const backgroundImages = document.querySelectorAll('.background-container img');
+            backgroundImages.forEach((img, index) => {
+                img.style.opacity = index === randomIndex ? 1 : 0;
+            });
+        }
+    </script>
+</body>
+</html>
+
+
+
+
